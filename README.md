@@ -2,7 +2,7 @@
 
 ## objectives
 
-- validate the management possibilites of workflow (dashboard designer)
+- check the management of workflows (designer, etc...)
 - check the versioning of workflows
 - implement a custom activity
 
