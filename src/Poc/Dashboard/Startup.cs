@@ -15,6 +15,8 @@ using Elsa.Persistence.EntityFrameworkCore.DbContexts;
 using Elsa.Persistence.EntityFrameworkCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Dashboard.Activities;
+using Elsa.Activities.Email.Activities;
 
 namespace Dashboard
 {
@@ -38,6 +40,8 @@ namespace Dashboard
                 .AddHttpActivities(options => options.Bind(Configuration.GetSection("Elsa:Http")))
                 .AddEmailActivities(options => options.Bind(Configuration.GetSection("Elsa:Smtp")))
                 .AddTimerActivities(options => options.Bind(Configuration.GetSection("Elsa:Timers")))
+                .AddActivity<SayHelloWorld>()
+                .AddActivity<SendEmail>()
 
                 // Add services used for the workflows dashboard.
                 .AddElsaDashboard();
