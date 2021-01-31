@@ -43,6 +43,8 @@ namespace Dashboard
                 .AddActivity<SayHelloWorld>()
                 .AddActivity<SendEmail>()
 
+                .AddSingleton(Console.Out)
+
                 // Add services used for the workflows dashboard.
                 .AddElsaDashboard();
         }
