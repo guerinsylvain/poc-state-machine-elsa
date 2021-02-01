@@ -28,6 +28,6 @@ dotnet ef database update --context SqlServerContext
 
 ## dashboard
 
-[](https://github.com/guerinsylvain/poc-state-machine-elsa/blob/main/doc/dashboard-001.jpg)  
-[](https://github.com/guerinsylvain/poc-state-machine-elsa/blob/main/doc/dashboard-002.jpg)  
-[](https://github.com/guerinsylvain/poc-state-machine-elsa/blob/main/doc/dashboard-003.jpg)
+![](https://github.com/guerinsylvain/poc-state-machine-elsa/blob/main/doc/dashboard-001.jpg)  
+![](https://github.com/guerinsylvain/poc-state-machine-elsa/blob/main/doc/dashboard-002.jpg)  
+![](https://github.com/guerinsylvain/poc-state-machine-elsa/blob/main/doc/dashboard-003.jpg)
