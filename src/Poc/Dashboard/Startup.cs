@@ -1,12 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Elsa.Activities.Email.Extensions;
 using Elsa.Activities.Http.Extensions;
 using Elsa.Activities.Timers.Extensions;
@@ -16,7 +12,6 @@ using Elsa.Persistence.EntityFrameworkCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Dashboard.Activities;
-using Elsa.Activities.Email.Activities;
 
 namespace Dashboard
 {
@@ -34,15 +29,15 @@ namespace Dashboard
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
+
             services
                 // Add services used for the workflows runtime.
                 .AddElsa(elsa => elsa.AddEntityFrameworkStores<SqlServerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db"))))
                 .AddHttpActivities(options => options.Bind(Configuration.GetSection("Elsa:Http")))
                 .AddEmailActivities(options => options.Bind(Configuration.GetSection("Elsa:Smtp")))
                 .AddTimerActivities(options => options.Bind(Configuration.GetSection("Elsa:Timers")))
-                .AddActivity<SayHelloWorld>()
-                .AddActivity<SendEmail>()
-
+                .AddActivities()
                 .AddSingleton(Console.Out)
 
                 // Add services used for the workflows dashboard.
@@ -60,8 +55,10 @@ namespace Dashboard
             app.UseStaticFiles()
                .UseHttpActivities()
                .UseRouting()
-               .UseEndpoints(endpoints => endpoints.MapControllers())
+               .UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute())
                .UseWelcomePage();
         }
+
+
     }
 }
