@@ -7,7 +7,7 @@
 - implement a custom activity
 - check that a workflow can be triggered programmatically
 - check state propagation between activities
-- check versionning o factivities
+- check versioning o factivities
 - check execution logging
 - check pause and restart of a workflow
 - evaluate performance
