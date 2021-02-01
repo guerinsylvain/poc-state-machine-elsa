@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Dashboard.Activities
+namespace Dashboard.Application.Activities
 {
     public static class IServiceCollectionExtensions
     {

@@ -11,7 +11,9 @@ using Elsa.Persistence.EntityFrameworkCore.DbContexts;
 using Elsa.Persistence.EntityFrameworkCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Dashboard.Activities;
+using Dashboard.Application.Activities;
+using Dashboard.Application.Handlers;
+using Elsa.Extensions;
 
 namespace Dashboard
 {
@@ -41,7 +43,10 @@ namespace Dashboard
                 .AddSingleton(Console.Out)
 
                 // Add services used for the workflows dashboard.
-                .AddElsaDashboard();
+                .AddElsaDashboard()
+
+                // Add our liquid handler.
+                .AddNotificationHandlers(typeof(LiquidConfigurationHandler));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

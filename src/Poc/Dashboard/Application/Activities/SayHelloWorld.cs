@@ -7,7 +7,7 @@ using Elsa.Services;
 using Elsa.Services.Models;
 using NodaTime;
 
-namespace Dashboard.Activities
+namespace Dashboard.Application.Activities
 {
     [ActivityDefinition(Category = "iBadge", Description = "Say hello to the world")]
     public class SayHelloWorld : Activity

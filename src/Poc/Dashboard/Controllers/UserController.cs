@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Dashboard.Models;
+using Dashboard.Application.Models;
 using Elsa.Activities.Workflows.Extensions;
 using Elsa.Models;
 using Elsa.Services;
