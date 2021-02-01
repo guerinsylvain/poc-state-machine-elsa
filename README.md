@@ -25,3 +25,9 @@ dotnet ef database update --context SqlServerContext
 
 [ELSA official web site](https://elsa-workflows.github.io/elsa-core/)  
 [Building Workflow Driven .NET Core Applications with Elsa](https://sipkeschoorstra.medium.com/building-workflow-driven-net-core-applications-with-elsa-139523aa4c50)
+
+## dashboard
+
+[](https://github.com/guerinsylvain/poc-state-machine-elsa/blob/main/doc/dashboard-001.jpg)  
+[](https://github.com/guerinsylvain/poc-state-machine-elsa/blob/main/doc/dashboard-002.jpg)  
+[](https://github.com/guerinsylvain/poc-state-machine-elsa/blob/main/doc/dashboard-003.jpg)
