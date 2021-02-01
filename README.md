@@ -10,6 +10,7 @@
 - check versionning o factivities
 - check execution logging
 - check pause and restart of a workflow
+- evaluate performance
 
 ## setup
 
