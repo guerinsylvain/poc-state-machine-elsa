@@ -7,7 +7,8 @@ namespace Dashboard.Application.Activities
         public static IServiceCollection AddActivities(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddActivity<CreateUser>()
-                .AddActivity<SayHelloWorld>();
+                             .AddActivity<SayHelloWorld>()
+                             .AddActivity<WaitingForApproval>();
 
             return serviceCollection;
         }

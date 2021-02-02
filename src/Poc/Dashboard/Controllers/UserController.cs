@@ -30,10 +30,10 @@ namespace Dashboard.Controllers
         {
             // THIS IS A TEST TO CHECK THAT WE CAN TRIGGER A WORKFLOW PROGRAMMATICALLY
 
-            // Get the version '8' of the worklow 'Register User' 
+            // Get the version '12' of the worklow 'Register User' 
             // '08ee70d9fef040a0996e58e16d12deab' is the Definition Id found in the table 'WorkflowDefinitionVersions' 
             var workflowDefinition = await _workflowRegistry.GetWorkflowDefinitionAsync("08ee70d9fef040a0996e58e16d12deab",
-                                                                                        VersionOptions.SpecificVersion(8),
+                                                                                        VersionOptions.SpecificVersion(12),
                                                                                         cancellationToken);
 
             var input = new Variables();
@@ -48,13 +48,13 @@ namespace Dashboard.Controllers
         [Route("{id}/approve-registration")]
         public async Task<IActionResult> ApproveRegistrationAsync(Guid id, CancellationToken cancellationToken)
         {
-            var workflows = await _workflowInstanceStore.ListByBlockingActivityAsync("Signaled");
+            var workflows = await _workflowInstanceStore.ListByBlockingActivityAsync("WaitingForApproval");
 
             workflows =  workflows.Where(w => w.Item1.DefinitionId == "08ee70d9fef040a0996e58e16d12deab" &&
                                               w.Item1.Scope.GetVariable<string>("UserId").Equals(id.ToString(), StringComparison.OrdinalIgnoreCase));
 
             // TODO: check that one and only one workflow instance is found...
-            //       and return BAD REQUEST + error info
+            //       and return BAD REQUEST + error info if needed
             
             var workflowInstance = workflows.First().Item1;
             await _workflowInvoker.ResumeAsync(workflowInstance, 

@@ -38,7 +38,7 @@ namespace Dashboard
                 .AddElsa(elsa => elsa.AddEntityFrameworkStores<SqlServerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db"))))
                 .AddHttpActivities(options => options.Bind(Configuration.GetSection("Elsa:Http")))
                 .AddEmailActivities(options => options.Bind(Configuration.GetSection("Elsa:Smtp")))
-                .AddTimerActivities(options => options.Bind(Configuration.GetSection("Elsa:Timers")))
+                //.AddTimerActivities(options => options.Bind(Configuration.GetSection("Elsa:Timers"))) // Timer activities are not used in this POC
                 .AddActivities()
                 .AddSingleton(Console.Out)
 
