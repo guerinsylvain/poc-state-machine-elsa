@@ -12,7 +12,7 @@ using NodaTime;
 
 namespace Dashboard.Application.Activities
 {
-    [ActivityDefinition(Category = "iBadge", Description = "Create a User")]
+    [ActivityDefinition(Category = "iBadge", Description = "Create a User", Outcomes = new []{"Done","Fault"})]
     public class CreateUser : Activity
     {
         [ActivityProperty(Hint = "Enter an expression that evaluates to the name of the user to create.")]
@@ -38,8 +38,13 @@ namespace Dashboard.Application.Activities
 
         protected override async Task<ActivityExecutionResult> OnExecuteAsync(WorkflowExecutionContext context, CancellationToken cancellationToken)
         {
-            var name = await context.EvaluateAsync(UserName, cancellationToken);
             var email = await context.EvaluateAsync(Email, cancellationToken);
+            if (email.Contains("test"))
+            {
+                return Outcome("Fault");
+            }
+
+            var name = await context.EvaluateAsync(UserName, cancellationToken);
             var password = await context.EvaluateAsync(Password, cancellationToken);
 
             // should create the user in the DB here....

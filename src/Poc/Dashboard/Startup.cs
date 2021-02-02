@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Dashboard.Application.Activities;
 using Dashboard.Application.Handlers;
+using Elsa.Activities.Console.Extensions;
 using Elsa.Extensions;
 
 namespace Dashboard
@@ -36,6 +37,7 @@ namespace Dashboard
             services
                 // Add services used for the workflows runtime.
                 .AddElsa(elsa => elsa.AddEntityFrameworkStores<SqlServerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db"))))
+                .AddConsoleActivities()
                 .AddHttpActivities(options => options.Bind(Configuration.GetSection("Elsa:Http")))
                 .AddEmailActivities(options => options.Bind(Configuration.GetSection("Elsa:Smtp")))
                 //.AddTimerActivities(options => options.Bind(Configuration.GetSection("Elsa:Timers"))) // Timer activities are not used in this POC

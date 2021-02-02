@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Elsa.Activities.Email.Activities;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Dashboard.Application.Activities
 {
