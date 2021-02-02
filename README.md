@@ -11,6 +11,7 @@
 - check execution logging
 - check pause and restart of a workflow
 - evaluate performance
+- check ELSA roadmap
 
 ## setup
 
