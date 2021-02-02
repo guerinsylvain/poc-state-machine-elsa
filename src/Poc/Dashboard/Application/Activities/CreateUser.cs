@@ -45,7 +45,7 @@ namespace Dashboard.Application.Activities
             // should create the user in the DB here....
             var user = new User
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = "762bbb2a-8664-4853-84ac-bf598295cb1e",
                 Name = name,
                 Email = email,
                 Password = password, // password should be hashed...
@@ -54,6 +54,11 @@ namespace Dashboard.Application.Activities
 
             var log = new LogEntry(context.CurrentActivity.Id, Instant.FromDateTimeUtc(DateTime.UtcNow), $"User '{name}'/'{email}' with password '{password}' created");
             context.Workflow.ExecutionLog.Add(log);
+
+            // Save the user id in the workflow scope.
+            // I am not sure if it is the right place to do that.
+            // But it will be very useful to resume the workflow.
+            context.Workflow.Scope.SetVariable("UserId", user.Id);
 
             Output.SetVariable("User", user);
 
