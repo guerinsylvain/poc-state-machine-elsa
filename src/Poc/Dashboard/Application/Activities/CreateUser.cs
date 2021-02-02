@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Dashboard.Application.Models;
@@ -16,20 +15,12 @@ namespace Dashboard.Application.Activities
     [ActivityDefinition(Category = "iBadge", Description = "Create a User")]
     public class CreateUser : Activity
     {
-        private readonly TextWriter _writer;
-
-        public CreateUser(TextWriter writer)
-        {
-            _writer = writer;
-        }
-
         [ActivityProperty(Hint = "Enter an expression that evaluates to the name of the user to create.")]
         public WorkflowExpression<string> UserName
         {
             get => GetState<WorkflowExpression<string>>();
             set => SetState(value);
         }
-
 
         [ActivityProperty(Hint = "Enter an expression that evaluates to the email address of the user to create.")]
         public WorkflowExpression<string> Email
