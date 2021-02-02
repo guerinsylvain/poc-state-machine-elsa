@@ -1,10 +1,12 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Dashboard.Application.Models;
 using Elsa.Activities.Workflows.Extensions;
 using Elsa.Models;
 using Elsa.Services;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Crypto.Modes;
 
 namespace Dashboard.Controllers
 {
@@ -18,6 +20,14 @@ namespace Dashboard.Controllers
             _workflowInvoker = workflowInvoker;
         }
 
+        [HttpGet]
+        [Route("{Id}")]
+        public IActionResult GetById(Guid id)
+        {
+            return Ok(new {Id = id});
+        }
+
+
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegistrationModel registration, CancellationToken cancellationToken)
@@ -28,7 +38,7 @@ namespace Dashboard.Controllers
 
             await _workflowInvoker.TriggerSignalAsync("RegisterUser", input, null, null, cancellationToken);
 
-            return Ok("User Controller reached");
+            return Ok(); // Should be created...
         }
     }
 }

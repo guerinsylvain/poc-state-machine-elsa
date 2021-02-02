@@ -12,8 +12,5 @@ namespace Dashboard.Application.Models
 
         [Required]
         public string Password { get; set; }
-
-        [Compare(nameof(Password))]
-        public string RepeatPassword { get; set; }
     }
 }
