@@ -30,10 +30,10 @@ namespace Dashboard.Controllers
         {
             // THIS IS A TEST TO CHECK THAT WE CAN TRIGGER A WORKFLOW PROGRAMMATICALLY
 
-            // Get the version '13' of the worklow 'Register User' 
+            // Get the version '20' of the worklow 'Register User' 
             // '08ee70d9fef040a0996e58e16d12deab' is the Definition Id found in the table 'WorkflowDefinitionVersions' 
             var workflowDefinition = await _workflowRegistry.GetWorkflowDefinitionAsync("08ee70d9fef040a0996e58e16d12deab",
-                                                                                        VersionOptions.SpecificVersion(13),
+                                                                                        VersionOptions.SpecificVersion(20),
                                                                                         cancellationToken);
 
             var input = new Variables();

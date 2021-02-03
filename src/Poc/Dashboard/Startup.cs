@@ -12,6 +12,7 @@ using Elsa.Persistence.EntityFrameworkCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Dashboard.Application.Activities;
+using Dashboard.Application.Activities.Extensions;
 using Dashboard.Application.Handlers;
 using Elsa.Activities.Console.Extensions;
 using Elsa.Extensions;

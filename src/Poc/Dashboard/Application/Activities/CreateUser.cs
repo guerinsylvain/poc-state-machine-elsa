@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Dashboard.Application.Models;
+using Elsa;
 using Elsa.Attributes;
 using Elsa.Expressions;
 using Elsa.Models;
@@ -12,7 +13,8 @@ using NodaTime;
 
 namespace Dashboard.Application.Activities
 {
-    [ActivityDefinition(Category = "iBadge", Description = "Create a User", Outcomes = new []{"Done","Fault"})]
+
+    [ActivityDefinition(Category = "iBadge", Description = "Create a User", Icon = "fas fa-user-plus",  Outcomes = new []{ CreateUserOutcomes.Created, CreateUserOutcomes.AlreadyCreated })]
     public class CreateUser : Activity
     {
         [ActivityProperty(Hint = "Enter an expression that evaluates to the name of the user to create.")]
@@ -67,7 +69,7 @@ namespace Dashboard.Application.Activities
 
             Output.SetVariable("User", user);
 
-            return Done();
+            return Outcome(CreateUserOutcomes.Created);
         }
     }
 }

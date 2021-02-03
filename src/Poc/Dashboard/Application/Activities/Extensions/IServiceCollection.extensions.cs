@@ -1,13 +1,13 @@
-﻿using Elsa.Activities.Email.Activities;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Dashboard.Application.Activities
+namespace Dashboard.Application.Activities.Extensions
 {
-    public static class IServiceCollectionExtensions
+    public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddActivities(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddActivity<CreateUser>()
+            serviceCollection.AddActivity<ActivateUser>()
+                             .AddActivity<CreateUser>()
                              .AddActivity<SayHelloWorld>()
                              .AddActivity<WaitingForApproval>();
 
