@@ -41,7 +41,7 @@ namespace Dashboard.Application.Activities
             var email = await context.EvaluateAsync(Email, cancellationToken);
             if (email.Contains("test"))
             {
-                return Outcome("Fault");
+                return Fault(new Exception($"'{email}' is not a valid email!"));
             }
 
             var name = await context.EvaluateAsync(UserName, cancellationToken);

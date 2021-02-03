@@ -39,15 +39,22 @@ namespace Dashboard.Controllers
             var input = new Variables();
             input.SetVariable("RegistrationModel", registration);
 
-            await _workflowInvoker.StartAsync(workflowDefinition, input, startActivityIds: null, correlationId: null, cancellationToken);
+            var context = await _workflowInvoker.StartAsync(workflowDefinition, input, startActivityIds: null, correlationId: null, cancellationToken);
 
-            return Ok(); // Should be http status 201 to be REST compliant...
+            if (context.Workflow.Fault != null)
+            {
+                return BadRequest(context.Workflow.Fault.Message);
+            }
+
+            return Ok(); 
         }
 
         [HttpPost]
         [Route("{id}/approve-registration")]
         public async Task<IActionResult> ApproveRegistrationAsync(Guid id, CancellationToken cancellationToken)
         {
+            // We need to find if there is a "Register User" workflow instance blocked on the 'WaitingForApproval' activity
+            // for the user 'id'.
             var workflows = await _workflowInstanceStore.ListByBlockingActivityAsync("WaitingForApproval");
 
             workflows =  workflows.Where(w => w.Item1.DefinitionId == "08ee70d9fef040a0996e58e16d12deab" &&
