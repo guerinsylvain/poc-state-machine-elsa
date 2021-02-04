@@ -15,12 +15,21 @@
 
 ## setup
 
+Before you can run the dotnet tool dotnet ef, you will need to install it.  
+To install dotnet ef, run the following command from your terminal: 
+
+```
+dotnet tool install --global dotnet-ef 
+```
+
 Make sure to first run the SqlServer migrations against your SQL Server:
 
 ```
-SET EF_CONNECTIONSTRING=Server=(localdb)\\mssqllocaldb;Database=PocDB;Trusted_Connection=True;
+SET EF_CONNECTIONSTRING=Server=(localdb)\mssqllocaldb;Database=PocDB;Trusted_Connection=True;
 dotnet ef database update --context SqlServerContext
 ```
+
+
 
 ## references
 
